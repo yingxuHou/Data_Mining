@@ -1,0 +1,5 @@
+dataset_name,n_samples,n_features,silhouette,calinski_harabasz,davies_bouldin,runtime,memory,Characteristics
+2D Points,1000,2,0.6280001746846702,4551.605890560755,0.4457487346498229,0.5913580200000002,2.93046875,"Low dimensional (2D), small sample (1000), suitable for shape analysis"
+Credit Data,8950,12,0.30527955668164786,787.4634311053458,1.2874583069101155,141.26740790756287,3.1734375,"High dimensional (17→12), large sample (8950), contains missing values"
+Customer Data,200,3,0.4443060450074701,137.08651091744508,0.792217912393671,0.303406978013917,0.6375,"Low dimensional (3D), small sample (200), suitable for customer segmentation"
+Stock Data,490,13,0.47338452132825354,618.1744149560843,0.7427133015025944,2.701013088825684,1.209375,"High dimensional (470→13), medium sample (490), requires dimensionality reduction"

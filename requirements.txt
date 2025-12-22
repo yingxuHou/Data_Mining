@@ -1,0 +1,24 @@
+# 数据挖掘聚类分析实验 - Python依赖包列表
+# 安装方法：在命令行运行 pip install -r requirements.txt
+
+# 数据处理库
+pandas>=1.3.0
+numpy>=1.21.0
+
+# 机器学习库（包含聚类算法）
+scikit-learn>=1.0.0
+
+# 可视化库
+matplotlib>=3.4.0
+seaborn>=0.11.0
+
+# 内存监控库
+memory-profiler>=0.60.0
+psutil>=5.8.0
+
+# 进度条库
+tqdm>=4.62.0
+
+# 科学计算库（用于层次聚类的树状图）
+scipy>=1.7.0
+

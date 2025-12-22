@@ -1,0 +1,6 @@
+algorithm_cn,silhouette,calinski_harabasz,davies_bouldin,runtime,memory,overall_score,Characteristics
+DBSCAN,0.5085901716575402,2399.9535119360658,0.6046815157767629,1.0685454930030822,0.2353515625,0.7694191395238918,"Can identify arbitrary shapes and noise, parameter sensitive, suitable for uneven density data"
+K-means,0.4552777668876292,1538.125059703771,0.8740431970109372,3.08395445,1.0947265625,0.7003417843583213,"Simple and efficient, suitable for spherical clusters, sensitive to initialization"
+Hierarchical,0.4071497294062002,1327.942598718856,0.9383217966172468,0.2274307250000018,0.5869140625,0.6921775451327173,"Provides hierarchical structure, suitable for small datasets, high computational complexity"
+GMM,0.3981175920849863,1323.7058477592836,1.0849009053048708,1.7384337499999978,0.6572265625,0.6772605737673871,"Soft clustering, probabilistic output, suitable for ellipsoidal clusters, computationally complex"
+Spectral,0.5445776120911962,1028.185791306561,0.5832254046104369,174.960618075,7.3642578125,0.5368171660207474,"Suitable for non-convex shapes, good performance but high computational cost"

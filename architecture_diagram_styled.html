@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学生宿舍监控管理系统架构图</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            margin: 10px 0 0 0;
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .diagram-container {
+            background: #f8fafc;
+            border-radius: 10px;
+            padding: 20px;
+            border: 1px solid #e2e8f0;
+            margin-bottom: 30px;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-left: 5px solid #3b82f6;
+        }
+
+        .feature-card h3 {
+            margin: 0 0 15px 0;
+            color: #1e40af;
+            font-size: 1.3em;
+        }
+
+        .feature-card ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .feature-card li {
+            margin-bottom: 8px;
+            color: #374151;
+        }
+
+        .mermaid {
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏫 学生宿舍监控管理系统</h1>
+            <p>现代化架构设计方案</p>
+        </div>
+
+        <div class="content">
+            <div class="diagram-container">
+                <div class="mermaid">
+                    graph TB
+                        %% 用户层
+                        subgraph Users["👥 用户层"]
+                            Student["🎓 学生"]
+                            DormAdmin["👨‍💼 宿舍管理员"]
+                        end
+
+                        %% 功能层
+                        subgraph Functions["⚡ 功能层"]
+                            Login["🔐 登录系统"]
+                            StudentMgmt["📚 学生管理"]
+                                StudentMgmt_CheckIn["✅ 打卡功能"]
+                            DormMgmt["🏠 宿管管理"]
+                                DormMgmt_Scoring["🌟 卫生评分"]
+                            AccessControl["🚪 门禁管理"]
+                                AccessControl_Visitor["📋 访客登记"]
+                        end
+
+                        %% 技术层
+                        subgraph Tech["💻 技术层"]
+                            subgraph Frontend["🌐 前端层"]
+                                Gateway["Spring Cloud Gateway"]
+                            end
+
+                            subgraph Middleware["⚙️ 中间件层"]
+                                Nacos["📊 Nacos"]
+                                Docker["🐳 Docker"]
+                                Redis["⚡ Redis"]
+                            end
+
+                            subgraph Backend["🔧 后端层"]
+                                SpringCloud["☁️ Spring Cloud"]
+                                SpringBoot["🚀 Spring Boot"]
+                                MySQL["🗄️ MySQL"]
+                            end
+                        end
+
+                        %% 连接关系
+                        Student --> Login
+                        DormAdmin --> Login
+                        Login --> StudentMgmt
+                        Login --> DormMgmt
+                        Login --> AccessControl
+
+                        StudentMgmt --> StudentMgmt_CheckIn
+                        DormMgmt --> DormMgmt_Scoring
+                        AccessControl --> AccessControl_Visitor
+
+                        StudentMgmt --> Gateway
+                        DormMgmt --> Gateway
+                        AccessControl --> Gateway
+
+                        Gateway --> Nacos
+                        Gateway --> Redis
+                        Gateway --> SpringCloud
+
+                        SpringCloud --> SpringBoot
+                        SpringBoot --> MySQL
+
+                        %% 样式定义
+                        classDef userStyle {
+                            fill:#FFE5B4
+                            stroke:#FF8C00
+                            stroke-width:3px
+                            color:#000
+                            font-weight:bold
+                            font-size:14px
+                        }
+
+                        classDef functionStyle {
+                            fill:#E6F3FF
+                            stroke:#4169E1
+                            stroke-width:2px
+                            color:#000
+                            font-weight:500
+                            font-size:12px
+                        }
+
+                        classDef subFunctionStyle {
+                            fill:#F0F8FF
+                            stroke:#6495ED
+                            stroke-width:1px
+                            color:#000
+                            font-size:11px
+                        }
+
+                        classDef techStyle {
+                            fill:#F0FFF0
+                            stroke:#32CD32
+                            stroke-width:2px
+                            color:#000
+                            font-weight:500
+                            font-size:12px
+                        }
+
+                        classDef frontendStyle {
+                            fill:#FFF0F5
+                            stroke:#FF69B4
+                            stroke-width:2px
+                            color:#000
+                            font-size:12px
+                        }
+
+                        classDef middlewareStyle {
+                            fill:#F5F5DC
+                            stroke:#DAA520
+                            stroke-width:2px
+                            color:#000
+                            font-size:12px
+                        }
+
+                        classDef backendStyle {
+                            fill:#F0F8FF
+                            stroke:#4682B4
+                            stroke-width:2px
+                            color:#000
+                            font-size:12px
+                        }
+
+                        %% 应用样式
+                        class Student,DormAdmin userStyle
+                        class Login,StudentMgmt,DormMgmt,AccessControl functionStyle
+                        class StudentMgmt_CheckIn,DormMgmt_Scoring,AccessControl_Visitor subFunctionStyle
+                        class Users,Functions,Tech techStyle
+                        class Gateway frontendStyle
+                        class Nacos,Docker,Redis middlewareStyle
+                        class SpringCloud,SpringBoot,MySQL backendStyle
+                </div>
+            </div>
+
+            <div class="features">
+                <div class="feature-card">
+                    <h3>🎨 视觉设计特点</h3>
+                    <ul>
+                        <li><strong>现代化配色方案：</strong>采用暖色调用户层、蓝色系功能层、绿色系技术层</li>
+                        <li><strong>图标增强：</strong>每个组件添加相关emoji图标，提升识别度</li>
+                        <li><strong>层次结构：</strong>清晰的三层架构，子功能嵌套显示</li>
+                        <li><strong>专业排版：</strong>统一间距、对称布局、优雅字体</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <h3>🛠️ 技术架构亮点</h3>
+                    <ul>
+                        <li><strong>微服务架构：</strong>Spring Cloud + Spring Boot</li>
+                        <li><strong>容器化部署：</strong>Docker容器化管理</li>
+                        <li><strong>服务发现：</strong>Nacos注册中心</li>
+                        <li><strong>缓存优化：</strong>Redis高性能缓存</li>
+                        <li><strong>API网关：</strong>Spring Cloud Gateway统一入口</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <h3>📱 功能模块设计</h3>
+                    <ul>
+                        <li><strong>统一认证：</strong>集成登录系统</li>
+                        <li><strong>学生管理：</strong>信息管理 + 打卡考勤</li>
+                        <li><strong>宿管功能：</strong>宿舍管理 + 卫生评分</li>
+                        <li><strong>门禁系统：</strong>访客登记 + 出入管理</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <h3>🔄 数据流向</h3>
+                    <ul>
+                        <li><strong>用户交互：</strong>前端界面 → 功能模块</li>
+                        <li><strong>业务处理：</strong>功能模块 → API网关</li>
+                        <li><strong>服务调用：</strong>网关 → 微服务集群</li>
+                        <li><strong>数据存储：</strong>服务层 → MySQL数据库</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'default',
+            themeVariables: {
+                primaryColor: '#f3f9ff',
+                primaryTextColor: '#0d47a1',
+                primaryBorderColor: '#2196f3',
+                lineColor: '#42a5f5',
+                secondaryColor: '#f8fff8',
+                tertiaryColor: '#fff0f5'
+            }
+        });
+    </script>
+</body>
+</html>
